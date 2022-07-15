@@ -1,9 +1,7 @@
 const { Client } = require('pg');
 const client = new Client('postgres://localhost:5432/juicebox-dev');
 
-module.exports = {
-    client,
-  }
+
 
 
   async function getAllUsers() {
@@ -15,11 +13,7 @@ module.exports = {
     return rows;
   }
   
-  // and export them
-  module.exports = {
-    client,
-    getAllUsers,
-  }
+
 
   async function createUser({ username, password }) {
     try {
@@ -35,5 +29,5 @@ module.exports = {
   }
 
   module.exports ={
-   createUser
+   createUser, client, getAllUsers
   }
