@@ -4,16 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "seed:dev": "nodemon ./db/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcova/juicebox.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "node": "^18.5.0",
-    "pg": "^8.7.3"
+  "bugs": {
+    "url": "https://github.com/bcova/juicebox/issues"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
+  "homepage": "https://github.com/bcova/juicebox#readme",
+  "dependencies": {
+    "nodemon": "^2.0.19",
+    "pg": "^8.7.3"
   }
 }
