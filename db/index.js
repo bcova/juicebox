@@ -298,6 +298,21 @@ const client = new Client('postgres://localhost:5432/juicebox-dev');
       throw (error)
     }
   }
+
+
+async function getUserByUsername(username) {
+  try {
+    const { rows: [user] } = await client.query(`
+      SELECT *
+      FROM users
+      WHERE username=$1;
+    `, [username]);
+
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}
   module.exports ={
-   createUser, client, getAllUsers, updateUser, createPost, updatePost,getAllPosts, getPostsByUser,getUserById, createTags,addTagsToPost ,getPostById,createPostTag,getPostsByTagName, getAllTags
+   createUser, client, getAllUsers, updateUser, createPost, updatePost,getAllPosts, getPostsByUser,getUserById, createTags,addTagsToPost ,getPostById,createPostTag,getPostsByTagName, getAllTags, getUserByUsername
   }
