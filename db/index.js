@@ -64,7 +64,11 @@ const client = new Client('postgres://localhost:5432/juicebox-dev');
     RETURNING *;
   `, [authorId, title, content]);
 
+  console.log("Finished inserting into posts")
+
   const tagList = await createTags(tags);
+
+  console.log("Finished creating tags")
 
   return await addTagsToPost(post.id, tagList);
   
@@ -184,21 +188,23 @@ const client = new Client('postgres://localhost:5432/juicebox-dev');
   
    
     const insertValues = tagList.map(
-      (_, index) => `${index + 1}`).join('), (');
+      (_, index) => `$${index + 1}`).join('), (');
+
+      console.log(insertValues)
  
     const selectValues = tagList.map(
-      (_, index) => `${index + 1}`).join(', ');
+      (_, index) => `$${index + 1}`).join(', ');
    
     try {
       await client.query(
       `INSERT INTO tags(name)
-       VALUES (${ insertValues })
+       VALUES (${insertValues})
        ON CONFLICT (name) DO NOTHING;`,tagList)
 
       const {rows} = await client.query(
       `SELECT * FROM tags
        WHERE name
-       IN (${ selectValues });`,tagList)
+       IN (${selectValues});`,tagList)
        return rows
     } catch (error) {
       throw error;

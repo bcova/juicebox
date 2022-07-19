@@ -1,6 +1,6 @@
  
 const {
-  createUser, client, getAllUsers, updateUser, createPost, updatePost,getAllPosts,getUserById,
+  createUser, client, getAllUsers, updateUser, createPost, updatePost,getAllPosts,getUserById, getPostsByTagName
  } = require('./index');
 
 async function createInitialUsers() {
@@ -119,7 +119,7 @@ async function createTables() {
       const posts = await getAllPosts();
       console.log("Result:", posts);
   
-      console.log("Calling updatePost on posts[0]");
+      console.log("Calling updatePost on posts[0]",posts[0].id);
       const updatePostResult = await updatePost(posts[0].id, {
         title: "New Title",
         content: "Updated Content"
