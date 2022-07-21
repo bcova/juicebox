@@ -14,7 +14,7 @@ server.listen(PORT, () => {
 const morgan = require('morgan');
 server.use(morgan('dev'));
 
-server.use(express.json())
+server.use(express.json());
 
 server.use((req, res, next) => {
     console.log("<____Body Logger START____>");
